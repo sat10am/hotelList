@@ -12,7 +12,7 @@ const makeQueryString = (queryObj) => {
 
 const getHotels = (searchParams = {}) => {
   console.log(`/hotels?${makeQueryString(searchParams)}`)
-  return fetchApi(makeQueryString(`/hotels?${makeQueryString(searchParams)}`))
+  return fetchApi(`/hotels?${makeQueryString(searchParams)}`);
 };
 
 const getHotelPrice = (hotelId) => {

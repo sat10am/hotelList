@@ -16,22 +16,25 @@ const HotelPageWrapper = styled.div`
 
 export default function HotelListPage() {
 
-  const [searchParams, setSearchParams] = useState({
-    PRICE: {
-      min: 0,
-      max: 1000000,
-    },
-    'REVIEW-SCORE': {
-      min: 0,
-      max: 10,
-    },
-    FREE: []
-  });
+
   const [hotelList, setHotelList] = useState([]);
+  const [searchParams, setSearchParams] = useState({
+      PRICE: {
+        min: 0,
+        max: 1000000,
+      },
+      'REVIEW-SCORE': {
+        min: 0,
+        max: 10,
+      },
+      FREE: [],
+  });
+  
 
   async function getHotels() {
-    const response = await hotelApi.getHotels()
-    console.log(response)
+    const {hotelList} = await hotelApi.getHotels()
+    console.log('res', hotelList)
+    setHotelList(hotelList)
   }
 
   useEffect(() => {
@@ -42,7 +45,7 @@ export default function HotelListPage() {
   return (
     <HotelPageWrapper>
       <HotelFilters title="필터" />
-      <HotelList/>
+      <HotelList hotelList={hotelList}/>
     </HotelPageWrapper>
   )
 }
